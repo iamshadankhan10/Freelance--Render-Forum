@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://renderforum.com/sitemap.xml

@@ -1,0 +1,184 @@
+/* Floating Grid Toggle Button */
+.grid-toggle-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background-color: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-ui);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.grid-toggle-btn:hover {
+  background-color: var(--color-black);
+  border-color: var(--color-accent);
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 26, 26, 0.3);
+}
+
+.grid-toggle-btn--active {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
+  box-shadow: 0 0 16px rgba(139, 26, 26, 0.5);
+}
+
+.grid-toggle-btn--active:hover {
+  background-color: var(--color-accent-light);
+}
+
+.grid-toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-toggle-label strong {
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+/* Fullscreen Architectural Blueprint Overlay */
+.architectural-grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 990;
+  overflow: hidden;
+}
+
+/* Corner framing brackets */
+.corner-bracket {
+  position: absolute;
+  font-family: var(--font-ui);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  opacity: 0.7;
+  padding: 10px 16px;
+  user-select: none;
+}
+
+.corner-tl { top: 0; left: 0; }
+.corner-tr { top: 0; right: 0; text-align: right; }
+.corner-bl { bottom: 0; left: 0; }
+.corner-br { bottom: 0; right: 0; text-align: right; }
+
+/* Top Axis Coordinate Ribbon */
+.grid-axis-ribbon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 24px;
+  padding: 6px 16px;
+  background-color: rgba(245, 244, 240, 0.85);
+  border-bottom: 1px dashed rgba(139, 26, 26, 0.3);
+  font-family: var(--font-ui);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
+/* 12-Column Layout Lines */
+.grid-columns-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: 100%;
+  height: 100%;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.grid-col-line {
+  position: relative;
+  height: 100%;
+  border-right: 1px dashed rgba(139, 26, 26, 0.14);
+}
+
+.grid-col-line:first-child {
+  border-left: 1px dashed rgba(139, 26, 26, 0.14);
+}
+
+.grid-col-number {
+  position: absolute;
+  bottom: 16px;
+  right: 4px;
+  font-family: var(--font-ui);
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(139, 26, 26, 0.45);
+}
+
+/* Vertical Datum Markers */
+.grid-datum-markers {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+}
+
+.datum-tick {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.datum-tick::before {
+  content: '';
+  width: 12px;
+  height: 1px;
+  background-color: var(--color-accent);
+  opacity: 0.6;
+}
+
+.datum-tick span {
+  font-family: var(--font-ui);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  opacity: 0.75;
+}
+
+/* Hide on mobile devices */
+@media (max-width: 768px) {
+  .grid-toggle-btn {
+    bottom: 16px;
+    right: 16px;
+    padding: 6px 10px;
+  }
+  .grid-columns-container {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 16px;
+  }
+  .grid-axis-ribbon {
+    display: none;
+  }
+}

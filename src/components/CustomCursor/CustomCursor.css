@@ -1,0 +1,145 @@
+/* Architectural Custom Cursor */
+.custom-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Precision Center Dot & Crosshair */
+.cursor-dot {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+  transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.2s ease;
+  z-index: 2;
+}
+
+.cursor-dot--hover {
+  opacity: 0.2;
+  transform: scale(0.6);
+}
+
+.cursor-dot--click {
+  transform: scale(1.6);
+}
+
+/* Drafting crosshair subtle lines */
+.crosshair-h,
+.crosshair-v {
+  position: absolute;
+  background-color: rgba(139, 26, 26, 0.5);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.crosshair-h {
+  top: 3.5px;
+  left: -6px;
+  width: 20px;
+  height: 1px;
+}
+
+.crosshair-v {
+  top: -6px;
+  left: 3.5px;
+  width: 1px;
+  height: 20px;
+}
+
+.cursor-dot--hover .crosshair-h,
+.cursor-dot--hover .crosshair-v {
+  opacity: 0;
+}
+
+/* Trailing Follower Ring */
+.cursor-follower {
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(26, 26, 26, 0.35);
+  border-radius: 50%;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              top 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              left 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.3s ease,
+              border-color 0.3s ease;
+  z-index: 1;
+}
+
+/* Hover states */
+.cursor-follower--pointer {
+  top: -24px;
+  left: -24px;
+  width: 48px;
+  height: 48px;
+  border-color: var(--color-accent);
+  background-color: rgba(139, 26, 26, 0.06);
+}
+
+.cursor-follower--view,
+.cursor-follower--drag,
+.cursor-follower--explore {
+  top: -42px;
+  left: -42px;
+  width: 84px;
+  height: 84px;
+  background-color: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.cursor-follower--click {
+  transform: scale(0.9);
+}
+
+/* Badge text inside follower */
+.cursor-text {
+  font-family: var(--font-ui);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  pointer-events: none;
+  animation: cursorTextFade 0.25s ease forwards;
+}
+
+@keyframes cursorTextFade {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hide on touch devices */
+@media (pointer: coarse) {
+  .custom-cursor-container {
+    display: none !important;
+  }
+}
